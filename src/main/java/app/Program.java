@@ -1,21 +1,18 @@
 package app;
-import data.Persistencia;
-import views.AgregarVehiculos;
-import javax.swing.*;
-import java.awt.*;
 
 import data.Persistencia;
+import views.MenuPrincipal; 
 import java.util.InvalidPropertiesFormatException;
 
 public class Program {
     public static void main(String[] args) throws IllegalArgumentException, InvalidPropertiesFormatException {
-     Persistencia.inicializar();
+        Persistencia.inicializar();
         
-       
         java.awt.EventQueue.invokeLater(() -> {
-            AgregarVehiculos ventanaIngreso = new AgregarVehiculos();
-            ventanaIngreso.setLocationRelativeTo(null); 
-            ventanaIngreso.setVisible(true);
+            
+            MenuPrincipal menu = new MenuPrincipal();
+            menu.setLocationRelativeTo(null); 
+            menu.setVisible(true);
         });
     }
 }

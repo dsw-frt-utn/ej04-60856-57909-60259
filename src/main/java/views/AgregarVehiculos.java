@@ -18,6 +18,7 @@ public class AgregarVehiculos extends javax.swing.JFrame {
     /**
      * Creates new form AgregarVehiculos
      */
+    
     public AgregarVehiculos() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -25,6 +26,36 @@ public class AgregarVehiculos extends javax.swing.JFrame {
         jLabel8.setText("Dato 1 (kWh o Km/L):");
         jLabel9.setText("Dato 2 (Litros extra):");
         txtTipo.setToolTipText("Escriba 'ELECTRICO' o 'COMBUSTIBLE'");
+
+       
+        txtAño.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    evt.consume(); 
+                }
+            }
+        });
+
+        
+        java.awt.event.KeyAdapter validadorDecimales = new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                javax.swing.JTextField textField = (javax.swing.JTextField) evt.getSource();
+                
+                if (!Character.isDigit(c) && c != '.') {
+                    evt.consume();
+                }
+                if (c == '.' && textField.getText().contains(".")) {
+                    evt.consume();
+                }
+            }
+        };
+
+        txtCapacidad.addKeyListener(validadorDecimales);
+        txtDato1.addKeyListener(validadorDecimales);
+        txtDato2.addKeyListener(validadorDecimales);
+      
     }
 
     /**
