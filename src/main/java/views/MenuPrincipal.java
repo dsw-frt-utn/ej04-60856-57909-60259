@@ -86,14 +86,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ListarVehiculosView lista = new ListarVehiculosView();
-        lista.setLocationRelativeTo(null); // Para que aparezca centrada
+        lista.setLocationRelativeTo(null); 
         lista.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         AgregarVehiculos agregar = new AgregarVehiculos();
-        agregar.setLocationRelativeTo(null); // Para que aparezca centrada
+        agregar.setLocationRelativeTo(null);
         agregar.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

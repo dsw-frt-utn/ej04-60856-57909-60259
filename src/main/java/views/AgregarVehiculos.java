@@ -4,7 +4,7 @@
  */
 package views;
 import domain.*;
-import data.Persistencia;            // <--- AGREGAR ESTO
+import data.Persistencia;            
 import javax.swing.JOptionPane;
 
 /**
