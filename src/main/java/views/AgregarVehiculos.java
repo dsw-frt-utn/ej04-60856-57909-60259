@@ -21,6 +21,10 @@ public class AgregarVehiculos extends javax.swing.JFrame {
     public AgregarVehiculos() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        jLabel8.setText("Dato 1 (kWh o Km/L):");
+        jLabel9.setText("Dato 2 (Litros extra):");
+        txtTipo.setToolTipText("Escriba 'ELECTRICO' o 'COMBUSTIBLE'");
     }
 
     /**
@@ -168,14 +172,13 @@ public class AgregarVehiculos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
    try {
-            // Se agrega .trim() para borrar espacios accidentales al inicio o final
             String tipoEntrada = txtTipo.getText().trim().toUpperCase(); 
-            String patente = txtPatente.getText();
-            String nombreMarca = txtMarca.getText();
-            String modelo = txtModelo.getText();
-            int anio = Integer.parseInt(txtAño.getText());
-            double cap = Double.parseDouble(txtCapacidad.getText());
-            String codSucursal = txtSucursal.getText();
+            String patente = txtPatente.getText().trim();
+            String nombreMarca = txtMarca.getText().trim();
+            String modelo = txtModelo.getText().trim();
+            int anio = Integer.parseInt(txtAño.getText().trim());
+            double cap = Double.parseDouble(txtCapacidad.getText().trim());
+            String codSucursal = txtSucursal.getText().trim();
 
             Sucursal sucursal = Persistencia.getSucursales().stream()
                 .filter(s -> s.getCodigo().equals(codSucursal))
@@ -185,24 +188,24 @@ public class AgregarVehiculos extends javax.swing.JFrame {
             Marca marca = new Marca(nombreMarca, "No especificado");
 
             if (tipoEntrada.equals("ELECTRICO")) {
-                double kwh = Double.parseDouble(txtDato1.getText());
+                double kwh = Double.parseDouble(txtDato1.getText().trim());
                 Persistencia.getVehiculos().add(new VehiculoElectrico(patente, marca, modelo, anio, cap, sucursal, kwh));
+                
             } else if (tipoEntrada.equals("COMBUSTIBLE")) {
-                double kpl = Double.parseDouble(txtDato1.getText());
-                double extra = Double.parseDouble(txtDato2.getText());
+                double kpl = Double.parseDouble(txtDato1.getText().trim());
+                double extra = Double.parseDouble(txtDato2.getText().trim());
                 Persistencia.getVehiculos().add(new VehiculoCombustible(patente, marca, modelo, anio, cap, sucursal, kpl, extra));
+                
             } else {
-                // Si escriben mal el tipo, mostramos error y SALIMOS del método
-                JOptionPane.showMessageDialog(this, "Error: El tipo debe ser exactamente ELECTRICO o COMBUSTIBLE sin tildes.");
+                JOptionPane.showMessageDialog(this, "Error: El tipo debe ser 'ELECTRICO' o 'COMBUSTIBLE'.");
                 return; 
             }
 
-            // Si llegó hasta aquí, realmente se guardó
             JOptionPane.showMessageDialog(this, "Vehículo registrado correctamente.");
             this.dispose();
             
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: Verifique que los campos numéricos sean correctos (use punto para decimales).");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Error: Verifique que los campos numéricos sean correctos. (Ej: 'Dato 2' no puede estar vacío si es Combustible)");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
