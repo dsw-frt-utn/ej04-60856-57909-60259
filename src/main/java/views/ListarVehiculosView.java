@@ -13,8 +13,20 @@ public class ListarVehiculosView extends javax.swing.JFrame {
      * Creates new form ListarAnimalesView
      */
     public ListarVehiculosView() {
-        initComponents();
+       initComponents();
+        
+       
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
         listarVehiculos();
+        
+        
+        this.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent e) {
+                listarVehiculos(); 
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent e) {}
+        });
     }
     private void listarVehiculos(){
         ArrayList<VehiculoViewModel> vehiculos = Controlador.getVehiculos();
